@@ -28,16 +28,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
-#define ENCODERS_PAD_A { F4 }
+#define ENCODERS_PAD_A { D4 }
 #define ENCODERS_PAD_B { F5 }
 #define ENCODER_RESOLUTION 4
 
-#define USE_SERIAL_PD2
+#define USE_SERIAL_PD232
 
 #define TAPPING_FORCE_HOLD
 #define TAPPING_TERM 100
+#define TAP_CODE_DELAY 10
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
+
+#define DEBOUNCE 5
 
 // Underglow
 /*
