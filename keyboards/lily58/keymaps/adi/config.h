@@ -35,12 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL_PD232
 
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 100
+#define TAPPING_TERM 150
 #define TAP_CODE_DELAY 10
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
-
-#define DEBOUNCE 5
 
 // Underglow
 /*

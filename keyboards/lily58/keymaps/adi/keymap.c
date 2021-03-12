@@ -52,11 +52,11 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return rotation;
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _RAISE, _LOWER, _ADJUST);
-    state = update_tri_layer_state(state, _LOWER, _LAYER4, _LAYER5);
-    return state;
-}
+// layer_state_t layer_state_set_user(layer_state_t state) {
+//     state = update_tri_layer_state(state, _RAISE, _LOWER, _ADJUST);
+//     state = update_tri_layer_state(state, _LOWER, _LAYER4, _LAYER5);
+//     return state;
+// }
 
 
 static void render_logo(void) {
@@ -100,7 +100,7 @@ static void render_logo(void) {
   oled_write_raw_P(my_logo, sizeof(my_logo));
 }
 
-#    define KEYLOG_LEN 6
+#    define KEYLOG_LEN 24
 char     keylog_str[KEYLOG_LEN] = {};
 uint8_t  keylogs_str_idx        = 0;
 uint16_t log_timer              = 0;
@@ -136,7 +136,9 @@ void update_log(void) {
 }
 
 void render_keylogger_status(void) {
-    oled_write_P(PSTR("KLogr"), false);
+    oled_write_ln_P(PSTR("     "), false);
+    oled_write_ln_P(PSTR("Keys:"), false);
+    oled_write_ln_P(PSTR("     "), false);
     oled_write(keylog_str, false);
 }
 
@@ -201,11 +203,29 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             }
             break;
         case _LAYER4:
+            if (!clockwise){
+                    tap_code(KC_MS_WH_DOWN);
+                    tap_code(KC_MS_WH_DOWN);
+                    tap_code(KC_MS_WH_DOWN);
+                    tap_code(KC_MS_WH_DOWN);
+            }
+                else{
+                    tap_code(KC_MS_WH_UP);
+                    tap_code(KC_MS_WH_UP);
+                    tap_code(KC_MS_WH_UP);
+                    tap_code(KC_MS_WH_UP);
+                }        
+            break;
+        case _ADJUST:
             if (index == 0) {
-                if (!clockwise)
+                if (!clockwise){
                     tap_code(KC_MS_WH_RIGHT);
-                else
+                    tap_code(KC_MS_WH_RIGHT);
+                }
+                else{
                     tap_code(KC_MS_WH_LEFT);
+                    tap_code(KC_MS_WH_LEFT);
+                }    
             } else {
                 if (clockwise) {
                     tap_code(KC_VOLU);
